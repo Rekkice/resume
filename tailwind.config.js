@@ -67,7 +67,10 @@ module.exports = {
           "750": "hsl(214, 17%, 32%)",
           ...defaultTheme.colors.gray
         },
-        link: "#fbf3f3"
+        link: "#fbf3f3",
+        muted_blue: "#a0ced9",
+        muted_darker_blue: "#4a7d86",
+        muted_dark_blue: "#1f363d"
       },
     },
   },
