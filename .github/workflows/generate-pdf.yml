@@ -1,0 +1,63 @@
+name: PDF Generation with Puppeteer
+
+on:
+  workflow_run:
+    workflows: ["Build Tailwind CSS"]
+    types:
+      - completed
+
+jobs:
+  build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download built CSS
+        uses: actions/download-artifact@v2
+        with:
+          name: tailwind-css
+          path: ${{ github.workspace }}/docs/build.css
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run browserless container
+        run: |
+              docker run -d \
+                -p 3000:3000 \
+                -v ${{ github.workspace }}/docs:/usr/src/app/static/resume \
+                --name browserless \
+                ghcr.io/browserless/chromium
+
+      - name: Wait for Browserless to be Ready
+        run: |
+          until curl -s http://localhost:3000; do
+            echo "Waiting for Browserless to be ready..."
+            sleep 2
+          done
+
+      - name: Generate PDF
+        run: |
+          npm run generate:pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: resume-pdf
+          path: ./resume.pdf
+
+      - name: move PDF to output dir
+        run: |
+          mkdir output
+          mv ./resume.pdf ./output/resume.pdf
+
+      - name: Upload PDF artifact to pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./output
+
+      - name: Stop and Remove Browserless Container
+        if: ${{ always() }}
+        run: docker stop browserless && docker rm browserless
