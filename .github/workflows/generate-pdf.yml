@@ -48,16 +48,27 @@ jobs:
           name: resume-pdf
           path: ./resume.pdf
 
-      - name: move PDF to output dir
+      - name: move PDF to docs dir
         run: |
           mkdir output
-          mv ./resume.pdf ./output/resume.pdf
+          mv ./resume.pdf ${{ github.workspace }}/docs/resume.pdf
 
       - name: Upload PDF artifact to pages
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./output
+          path: ${{ github.workspace }}/docs
 
       - name: Stop and Remove Browserless Container
         if: ${{ always() }}
         run: docker stop browserless && docker rm browserless
+
+  deploy:
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      runs-on: ubuntu-latest
+      needs: build
+      steps:
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
