@@ -1,20 +1,18 @@
 {
-  "name": "universal-resume-template",
+  "name": "rekkice-resume",
   "version": "3.1.1",
-  "description": "Minimal and formal résumé (CV) website template for print, mobile, and desktop. https://bit.ly/ur_demo",
-  "homepage": "https://github.com/WebPraktikos/universal-resume",
+  "description": "Full-stack developer resume",
+  "homepage": "https://github.com/Rekkice/resume",
   "repository": {
     "type": "git",
-    "url": "https://github.com/WebPraktikos/universal-resume.git"
-  },
-  "bugs": {
-    "url": "https://github.com/WebPraktikos/universal-resume/issues"
+    "url": "https://github.com/Rekkice/resume.git"
   },
   "license": "NonCommercial-ShareAlike 1.0 Generic",
-  "author": "WebPraktikos <hi@webpraktikos.com>",
   "scripts": {
     "serve": "concurrently \"postcss ./tailwind.css -o docs/build.css --watch\"  \"live-server ./docs \"",
-    "build": "cross-env NODE_ENV=build postcss ./tailwind.css -o ./docs/build.css"
+    "build": "cross-env NODE_ENV=build postcss ./tailwind.css -o ./docs/build.css",
+    "generate:pdf": "node generatePDF.mjs",
+    "start:browserless": "docker run -p 3000:3000 -v ./docs:/usr/src/app/static/resume ghcr.io/browserless/chromium"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.0.6",
@@ -25,6 +23,7 @@
     "live-server": "^1.2.1",
     "postcss-cli": "^7.0.0",
     "postcss-import": "^12.0.1",
+    "puppeteer": "^23.5.1",
     "tailwindcss": "^1.2.0"
   }
 }

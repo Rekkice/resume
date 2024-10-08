@@ -22,10 +22,11 @@ body {
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
     color: black !important;
+    background-image: none;
   }
 
   .page {
-    padding: theme(spacing.16) theme(spacing.16) !important;
+    padding: theme(spacing.12) theme(spacing.16) !important;
   }
 
   .initial {
