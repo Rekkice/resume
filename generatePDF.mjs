@@ -14,7 +14,7 @@ import { launch } from 'puppeteer';
     // }
 
     // connects to browserless container
-    browser = await puppeteer.connect({
+    const browser = await puppeteer.connect({
       browserWSEndpoint: 'ws://localhost:3000'
     });
 
