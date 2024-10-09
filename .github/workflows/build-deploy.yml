@@ -53,6 +53,9 @@ jobs:
             sleep 2
           done
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Generate PDF
         run: |
           npm run generate:pdf
