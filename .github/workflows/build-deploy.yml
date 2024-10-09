@@ -35,6 +35,9 @@ jobs:
     needs: build-css
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Run browserless container
         run: |
           docker run -d \
@@ -77,7 +80,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           publish_dir: ${{ github.workspace }}/docs
