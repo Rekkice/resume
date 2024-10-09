@@ -1,18 +1,7 @@
 import puppeteer from 'puppeteer';
-import { launch } from 'puppeteer';
 
 (async () => {
   try {
-    // let browser
-    // if (process.env.DEV) {
-    //   // make sure ghcr.io/browserless/chromium is running on port 3000
-    //   browser = await puppeteer.connect({
-    //     browserWSEndpoint: 'ws://localhost:3000'
-    //   });
-    // } else {
-    //   browser = await launch();
-    // }
-
     // connects to browserless container
     const browser = await puppeteer.connect({
       browserWSEndpoint: 'ws://localhost:3000'
