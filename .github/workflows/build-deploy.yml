@@ -44,6 +44,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download built CSS
+        uses: actions/download-artifact@v4
+        with:
+          name: tailwind-css
+          path: ${{ github.workspace }}/docs/
+
       - name: Run browserless container
         run: |
           docker run -d \
