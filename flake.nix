@@ -11,6 +11,7 @@
       in {
         devShell = pkgs.mkShell {
           packages = with pkgs; [
+            tailwindcss_4
             nodejs
             nodePackages_latest.pnpm
             nodePackages_latest.typescript-language-server

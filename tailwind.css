@@ -1,7 +1,205 @@
-@import "docs/fira-go.css";
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "./docs/fira-go.css";
+@import "tailwindcss";
+
+@theme {
+  /* Breakpoints (from `screens` in config) */
+  --breakpoint-xsm: 500px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 811px;
+  --breakpoint-lg: 1051px;
+  --breakpoint-xl: 1280px;
+
+  /* Font Family (from `theme.extend.fontFamily`) */
+  --font-firago: "FiraGO", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Font Sizes (from `theme.extend.fontSize`) */
+  --font-size-sm2: 0.9375rem;
+  /* 15px */
+  --font-size-md: 1.0625rem;
+  /* 17px */
+  --font-size-lg: 1.125rem;
+  /* 18px */
+
+  /* Line Heights (from `theme.extend.lineHeight`) */
+  --line-height-snugish: 1.32;
+  --line-height-normal: 1.34;
+
+  /* Max Widths (from `theme.extend.maxWidth`) */
+  --max-width-letter: 66.40625rem;
+  --max-width-a4: 64.609375rem;
+
+  /* Heights (from `theme.extend.height`) */
+  --height-letter: 85.9375rem;
+  --height-letter-col: 71.625rem;
+  --height-letter-col-full: 77.9375rem;
+  --height-a4: 91.350883rem;
+  --height-a4-col: 77.038383rem;
+  --height-a4-col-full: 83.350883rem;
+
+  /* Spacing (from `theme.extend.spacing`) */
+  --spacing-0\.5: 2px;
+  --spacing-1\.5: 0.375rem;
+  --spacing-1\.6: 0.4375rem;
+  --spacing-2\.1: 0.5625rem;
+  --spacing-2\.5: 10px;
+  --spacing-3\.2: 0.8125rem;
+  --spacing-4\.5: 1.125rem;
+  --spacing-11: 2.75rem;
+
+  /* Colors (from `theme.extend.colors`) */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f7fafc;
+  --color-gray-150: hsl(210, 44%, 97%);
+  --color-gray-200: #e2e8f0;
+  --color-gray-250: hsl(210, 40%, 93.5%);
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-550: hsl(218, 20%, 63%);
+  --color-gray-600: #475569;
+  --color-gray-650: hsl(216, 15%, 48%);
+  --color-gray-700: #4a5568;
+  --color-gray-750: hsl(214, 17%, 32%);
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+  --color-gray-950: #020617;
+  --color-link: #fbf3f3;
+  --color-muted-blue: #a0ced9;
+  --color-muted-darker-blue: #4a7d86;
+  --color-muted-dark-blue: #1f363d;
+}
+
+@layer base {
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* Typography Utilities */
+@utility optimize-legibility {
+  text-rendering: optimizeLegibility;
+}
+
+@utility ligatures {
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings: 'liga' on, 'clig' on;
+}
+
+@utility kerning {
+  font-kerning: normal;
+  font-feature-settings: 'kern' on;
+}
+
+@utility small-caps {
+  font-variant-caps: small-caps;
+  font-feature-settings: 'smcp' on;
+}
+
+@utility all-small-caps {
+  font-variant-caps: all-small-caps;
+  font-feature-settings: 'c2sc' on, 'smcp' on;
+}
+
+@utility lining-nums {
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum' on;
+}
+
+@utility oldstyle-nums {
+  font-variant-numeric: oldstyle-nums;
+  font-feature-settings: 'onum' on;
+}
+
+@utility proportional-nums {
+  font-variant-numeric: proportional-nums;
+  font-feature-settings: 'pnum' on;
+}
+
+@utility tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' on;
+}
+
+@utility slashed-zero {
+  font-variant-numeric: slashed-zero;
+  font-feature-settings: 'zero' on;
+}
+
+@utility super {
+  font-variant-position: super;
+  font-feature-settings: 'sups' on;
+}
+
+@utility sub {
+  font-variant-position: sub;
+  font-feature-settings: 'sub' on;
+}
+
+@utility ordinal {
+  font-variant-position: ordinal;
+  font-feature-settings: 'ordn' on;
+}
+
+@utility fractions {
+  font-variant-numeric: diagonal-fractions;
+  font-feature-settings: 'frac' on;
+}
+
+@utility case-sensitive {
+  text-transform: uppercase;
+  font-feature-settings: 'case' on;
+}
+
+@utility hyphens-manual {
+  hyphens: manual;
+}
+
+/* Project Specific Utilities */
+@utility border-inset {
+  box-shadow: inset 0 0 0 1px var(--color-gray-400);
+}
+
+/* CSS Multi-Column Layout Utilities */
+@utility col-count-1 {
+  column-count: 1;
+}
+
+@utility col-count-2 {
+  column-count: 2;
+}
+
+@utility col-count-3 {
+  column-count: 3;
+}
+
+@utility col-gap-md {
+  column-gap: 2.1875rem;
+}
+
+@utility break-after-col {
+  break-after: column;
+}
+
+@utility break-inside-avoid {
+  break-inside: avoid;
+}
+
+@utility break-after-avoid {
+  break-after: avoid;
+}
+
+@utility break-before-avoid {
+  break-before: avoid;
+}
+
+@utility col-fill-auto {
+  column-fill: auto;
+}
+
+@utility col-fill-balance {
+  column-fill: balance;
+}
+
 
 body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 480' fill='%23E9FCFF'%3E%3Cpath d='m337 320 63-160h-80a160 160 0 1 0-320 0h160L80 320h80a160 160 0 1 0 320 0H337Z'%3E%3C/path%3E%3C/svg%3E");
@@ -10,12 +208,10 @@ body {
   background-position: 0 0;
 }
 
-@screen print {
+/* Replaced `@screen print` with a standard media query. */
+@media print {
   @page {
-    margin-top: 0in;
-    margin-bottom: 0in;
-    margin-left: 0in;
-    margin-right: 0in;
+    margin: 0;
   }
 
   body {
@@ -26,7 +222,8 @@ body {
   }
 
   .page {
-    padding: theme(spacing.12) theme(spacing.16) !important;
+    /* Replaced `theme(spacing.12)` with `var(--spacing-12)` */
+    padding: var(--spacing-12) var(--spacing-16) !important;
   }
 
   .initial {
@@ -51,35 +248,19 @@ html {
   font-size: 13.176471px;
 }
 
-/* For Letter size */
-
-@screen sm {
+@media (min-width: var(--breakpoint-sm)) {
   html {
-    font-size: calc(13.176471px + (16 - 13.176471) * (100vw - 640px) / (833 - 640));
+    font-size: calc(13.176471px + (16 - 13.176471) * (100vw - 640px) / (811 - 640));
   }
 }
 
-@screen md {
+@media (min-width: var(--breakpoint-md)) {
   html {
-    font-size: calc(12.288px + (16 - 12.288) * (100vw - 833px) / (1079.5 - 833));
+    font-size: calc(12.288px + (16 - 12.288) * (100vw - 811px) / (1051 - 811));
   }
 }
 
-/* For A4 size */
-
-/* @screen sm {
-  html {
-    font-size: calc( 13.176471px + (16 - 13.176471) * (100vw - 640px) / (811 - 640) );
-  }
-}
-
-@screen md {
-  html {
-    font-size: calc( 12.288px + (16 - 12.288) * (100vw - 811px) / (1051 - 811) );
-  }
-} */
-
-@screen lg {
+@media (min-width: var(--breakpoint-lg)) {
   html {
     font-size: 16px;
   }

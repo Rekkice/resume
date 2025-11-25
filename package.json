@@ -9,21 +9,18 @@
   },
   "license": "NonCommercial-ShareAlike 1.0 Generic",
   "scripts": {
-    "serve": "concurrently \"postcss ./tailwind.css -o docs/build.css --watch\"  \"live-server ./docs \"",
-    "build": "cross-env NODE_ENV=build postcss ./tailwind.css -o ./docs/build.css",
+    "serve": "concurrently \"tailwindcss -i ./tailwind.css -o docs/build.css --watch\" \"live-server ./docs\"",
+    "build": "tailwindcss -i ./tailwind.css -o ./docs/build.css --minify",
     "generate:pdf": "node generatePDF.mjs",
     "start:browserless": "docker run -p 3000:3000 -v ./docs:/usr/src/app/static/resume ghcr.io/browserless/chromium"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.0.6",
-    "autoprefixer": "^9.7.4",
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.0",
-    "cssnano": "^4.1.10",
     "live-server": "^1.2.1",
-    "postcss-cli": "^7.0.0",
-    "postcss-import": "^12.0.1",
-    "puppeteer": "^23.5.1",
-    "tailwindcss": "^1.2.0"
+    "puppeteer": "^23.5.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.17"
   }
 }
