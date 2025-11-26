@@ -10,7 +10,7 @@
   "license": "NonCommercial-ShareAlike 1.0 Generic",
   "scripts": {
     "serve": "concurrently \"tailwindcss -i ./tailwind.css -o docs/build.css --watch\" \"live-server ./docs\"",
-    "build": "tailwindcss -i ./tailwind.css -o ./docs/build.css --minify",
+    "build": "@tailwindcss/cli -i ./tailwind.css -o ./docs/build.css --minify",
     "generate:pdf": "node generatePDF.mjs",
     "start:browserless": "docker run -p 3000:3000 -v ./docs:/usr/src/app/static/resume ghcr.io/browserless/chromium"
   },
@@ -21,6 +21,7 @@
     "puppeteer": "^23.5.1"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.17",
     "tailwindcss": "^4.1.17"
   }
 }
